@@ -37,18 +37,13 @@ export const useSpotify = () => {
         // Инициализация Spotify API с Client Credentials
         const api = SpotifyApi.withClientCredentials(CLIENT_ID, CLIENT_SECRET);
 
-        // Поиск артиста Zqqwer
-        const searchResults = await api.search("Zqqwer", ["artist"], "RU", 1);
-
-        if (searchResults.artists.items.length === 0) {
-          throw new Error("Артист Zqqwer не найден");
-        }
-
-        const foundArtist = searchResults.artists.items[0];
+        // Получение данных артиста по ID
+        const artistId = "5WWe71J3UIA4pNWL71ovp0";
+        const foundArtist = await api.artists.get(artistId);
         setArtist(foundArtist);
 
         // Получение топ-треков артиста
-        const topTracks = await api.artists.topTracks(foundArtist.id, "RU");
+        const topTracks = await api.artists.topTracks(artistId, "RU");
         setTracks(topTracks.tracks);
       } catch (err) {
         console.error("Spotify API Error:", err);
