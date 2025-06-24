@@ -13,7 +13,7 @@ const Navigation = () => {
             to="/"
             className="text-2xl font-bold text-white font-montserrat"
           >
-            Zqqwera
+            Zqqwer
           </Link>
 
           <div className="flex gap-8">

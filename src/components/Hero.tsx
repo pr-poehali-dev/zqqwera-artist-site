@@ -9,7 +9,7 @@ const Hero = () => {
 
       <div className="text-center z-10 px-6">
         <h1 className="text-7xl md:text-9xl font-bold text-white mb-6 font-montserrat animate-fade-in">
-          Zqqwera
+          Zqqwer
         </h1>
         <p className="text-xl md:text-2xl text-white/80 mb-8 animate-fade-in delay-300">
           Alternative • Hyperpop • Future Sound
