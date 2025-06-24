@@ -1,4 +1,8 @@
+import { useSpotify } from "@/hooks/useSpotify";
+
 const Hero = () => {
+  const { artist, loading } = useSpotify();
+
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-dark-purple via-primary-purple/20 to-magenta-pink/10 relative overflow-hidden">
       {/* Animated background elements */}
@@ -8,12 +12,27 @@ const Hero = () => {
       </div>
 
       <div className="text-center z-10 px-6">
-        <h1 className="text-7xl md:text-9xl font-bold text-white mb-6 font-montserrat animate-fade-in">
-          Zqqwer
-        </h1>
-        <p className="text-xl md:text-2xl text-white/80 mb-8 animate-fade-in delay-300">
-          Alternative • Hyperpop • Future Sound
-        </p>
+        {loading ? (
+          <div className="animate-pulse">
+            <div className="h-24 bg-white/10 rounded-lg mb-6 w-96 mx-auto"></div>
+            <div className="h-8 bg-white/10 rounded-lg mb-8 w-72 mx-auto"></div>
+          </div>
+        ) : (
+          <>
+            <h1 className="text-7xl md:text-9xl font-bold text-white mb-6 font-montserrat animate-fade-in">
+              {artist?.name || "Zqqwer"}
+            </h1>
+            <p className="text-xl md:text-2xl text-white/80 mb-4 animate-fade-in delay-300">
+              {artist?.genres.join(" • ") ||
+                "Alternative • Hyperpop • Future Sound"}
+            </p>
+            {artist && (
+              <p className="text-lg text-white/60 mb-8 animate-fade-in delay-400">
+                {artist.followers.total.toLocaleString()} подписчиков
+              </p>
+            )}
+          </>
+        )}
         <div className="flex gap-6 justify-center animate-fade-in delay-500">
           <button className="px-8 py-3 bg-gradient-to-r from-primary-purple to-magenta-pink text-white rounded-full font-semibold hover:scale-105 transition-transform duration-300">
             Слушать музыку
