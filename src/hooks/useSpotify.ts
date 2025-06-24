@@ -1,4 +1,4 @@
-import { SpotifyApi, SpotifyApiError } from "@spotify/web-api-ts-sdk";
+import { SpotifyApi } from "@spotify/web-api-ts-sdk";
 import { useState, useEffect } from "react";
 
 // Spotify Client Credentials для публичного доступа
@@ -52,11 +52,7 @@ export const useSpotify = () => {
         setTracks(topTracks.tracks);
       } catch (err) {
         console.error("Spotify API Error:", err);
-        setError(
-          err instanceof SpotifyApiError
-            ? err.message
-            : "Ошибка загрузки данных",
-        );
+        setError(err instanceof Error ? err.message : "Ошибка загрузки данных");
 
         // Fallback данные для демонстрации
         setTracks([
